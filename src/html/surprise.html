@@ -185,7 +185,7 @@ Firefly.prototype.render = function(ctx, now){
   if( this.size < 1) {
     return;
   }
-  ctx.globalAlpha = Math.max(Math.abs(Math.sin( (now + this.phase_diff) / (~~(this.size * 100)) )), 0.4);
+  ctx.globalAlpha = Math.max(Math.abs(Math.sin( (now + this.phase_diff) / (~~(this.size * 30)) )), 0.1);
   ctx.fillStyle = this.color;
   ctx.shadowColor = this.color;
   ctx.shadowBlur = 20 / this.size; 
@@ -213,8 +213,8 @@ function render(){
   var audio = document.getElementById("hbd");
   audio.play();
   now = Date.now();
-  dt = (last - now) / 1000; 
-  last = now;
+  dt = (last - now) / 700; 
+  last = 0;
   ctx.clearRect(0,0,w,h);
   fireflies.forEach(function(f){
     f.move(dt);
@@ -239,8 +239,8 @@ render();
 
 // 
 function isOnHeart(x,y){
-	  x = ((x - center_x) / (min_distance * 1.2)) * 1.8;
-	  y = ((y - center_y) / (min_distance)) * - 1.8;
+	  x = ((x - center_x) / (min_distance * 1.2)) * 1.2;
+	  y = ((y - center_y) / (min_distance)) * - 1.1;
 
     var x2 = x * x;
   	var y2 = y * y;
